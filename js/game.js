@@ -15,7 +15,7 @@ $(document).ready(() => {
     alert("audio playback has ended");
   };
   $(audio).on("timeupdate", (e) => {
-    if (e.timeStamp > 5000){
+    if (audio.currentTime > 3){
       audio.pause();
     }
   });
