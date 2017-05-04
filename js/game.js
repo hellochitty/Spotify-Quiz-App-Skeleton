@@ -11,7 +11,8 @@ $(document).ready(() => {
     questions = songs.slice(0,10);
     console.log(questions);
     $('#start').remove();
-    showQuestion(questions.shift());
+    currentQuestion = questions.shift();
+    showQuestion(currentQuestion);
   });
 
   const showQuestion = (question) => {
@@ -23,8 +24,7 @@ $(document).ready(() => {
     $('.body').append(buttonAudio);
     answers = getOtherAnswers(question);
     $('.body').append(htmlAnswers(answers));
-
-    $('.answer').click(handleAnswerClick);
+    $('.answer').on('click', (e) => handleAnswerClick(e));
     buttonAudio.click(play);
     var audio = document.getElementById("audio");
     $(audio).on("timeupdate", () => {
@@ -36,7 +36,6 @@ $(document).ready(() => {
   };
 
   const getOtherAnswers = (question) => {
-    console.log(question.name);
     let holder = [question.name];
     Util.shuffle(songs);
     let i = 0;
@@ -51,19 +50,27 @@ $(document).ready(() => {
 
   const htmlAnswers = (answers) => {
     return (
-      `<button class="answer" type="button" name=${answers[0]}>${answers[0]}</button>
-      <button class="answer" type="button" name=${answers[1]}>${answers[1]}</button>
-      <button class="answer" type="button" name=${answers[2]}>${answers[2]}</button>
-      <button class="answer" type="button" name=${answers[3]}>${answers[3]}</button>`
+      `<button class="answer" type="button">${answers[0]}</button>
+      <button class="answer" type="button">${answers[1]}</button>
+      <button class="answer" type="button">${answers[2]}</button>
+      <button class="answer" type="button">${answers[3]}</button>`
     );
   };
 
-  const handleAnswerClick = (answer) => {
-    if (answer === questions.name){
+  const handleAnswerClick = (e) => {
+    var audio = document.getElementById("audio");
+    if (audio){
+      audio.pause();
+      audio.remove();
+    }
+    $('.answer').remove();
+    if (e.currentTarget.textContent === currentQuestion.name){
       numRight += 1;
+      console.log(numRight);
     }
     if (questions.length > 0){
-      showQuestion(questions.shift());
+      currentQuestion = questions.shift();
+      showQuestion(currentQuestion);
     }else{
       console.log(numRight);
     }
@@ -77,7 +84,8 @@ $(document).ready(() => {
   let songs;
   let playlist;
   let questions;
-  let numRight;
+  let currentQuestion;
+  let numRight = 0;
   let answers;
 
   $(".difficulty").click((e) => {
