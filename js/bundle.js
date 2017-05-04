@@ -1,4 +1,77 @@
-export const songs = [ { url: 'https://p.scdn.co/mp3-preview/3859547944f57cfb7b996f6551148c9467889d4b?cid=8897482848704f2a8f8d7c79726a70d4',
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+/******/
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const songs = [ { url: 'https://p.scdn.co/mp3-preview/3859547944f57cfb7b996f6551148c9467889d4b?cid=8897482848704f2a8f8d7c79726a70d4',
     name: 'Hips Don\'t Lie' },
   { url: 'https://p.scdn.co/mp3-preview/6d6e50462ebed94662d84509d75a3a73fbf65fec?cid=8897482848704f2a8f8d7c79726a70d4',
     name: 'Crazy in Love' },
@@ -122,3 +195,89 @@ export const songs = [ { url: 'https://p.scdn.co/mp3-preview/3859547944f57cfb7b9
     name: 'Chasing Cars' },
   { url: 'https://p.scdn.co/mp3-preview/a83eedd6b982d4afdc2ceaeb458f471118ad78aa?cid=8897482848704f2a8f8d7c79726a70d4',
     name: 'Wake Me Up When September Ends' } ];
+/* harmony export (immutable) */ __webpack_exports__["a"] = songs;
+
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__songs_js__ = __webpack_require__(0);
+
+
+$(document).ready(() => {
+  let level;
+  let duration = 0;
+
+  $(".settings-difficulty").click((e) => {
+    level = e.target.name;
+    durationMapping(level);
+    $(e.currentTarget).parent().remove();
+
+  });
+
+  const durationMapping = lvl => {
+    switch (lvl){
+      case 'pedestrian':
+        duration = 5;
+        break;
+      case 'Mediocre':
+        duration = 3;
+        break;
+      case 'Tough':
+        duration = 1;
+      case 'Insane':
+        duration = 0.5;
+        break;
+      case 'Masochistic':
+        duration = 0.25;
+        break;
+    }
+  };
+
+
+  $( "#play" ).on("click", () => {
+    play();
+  });
+
+  const play = () => {
+    var audio = document.getElementById("audio");
+    audio.play();
+    $( "#play" ).remove();
+  };
+
+
+
+  $("#new-song").click((e) => {
+    var song = __WEBPACK_IMPORTED_MODULE_0__songs_js__["a" /* songs */][Math.floor(Math.random()* __WEBPACK_IMPORTED_MODULE_0__songs_js__["a" /* songs */].length)];
+    console.log(song);
+    var buttonAudio = $(`<div class="button-audio">
+      <button id="play" type="button" name="button">play</button>
+      <audio id="audio" src=${song.url}/>
+    </div>`);
+    $('body').append(buttonAudio);
+    buttonAudio.click(play);
+
+    var audio = document.getElementById("audio");
+    $(audio).on("timeupdate", () => {
+      if (audio.currentTime > duration){
+        audio.pause();
+        audio.remove();
+      }
+    });
+  });
+
+
+
+
+
+
+
+});
+
+
+/***/ })
+/******/ ]);
