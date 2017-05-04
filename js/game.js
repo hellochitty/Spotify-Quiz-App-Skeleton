@@ -78,7 +78,7 @@ $(document).ready(() => {
       <button id="play" type="button" name="button">play</button>
       <audio id="audio" src=${song.url}/>
     </div>`);
-    $('body').append(buttonAudio);
+    $('.body').append(buttonAudio);
     buttonAudio.click(play);
     var audio = document.getElementById("audio");
     $(audio).on("timeupdate", () => {

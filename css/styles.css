@@ -7,8 +7,25 @@ body, h1, h2, h3, h4, h5{
 
 body{
   background-color: #191414;
-  color: #C40700;
+  color: #191414;
+  background: url(http://cdn.wallpapersafari.com/46/7/MVBOFG.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+.body{
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  width: 800px;
+  height: 800px;
+  margin: 10px auto;
 }
 .hidden{
   display: none;
+}
+
+footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.4);
 }
