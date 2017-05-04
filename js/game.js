@@ -1,9 +1,13 @@
+import * as allOutThousands from './all_out_00s.js';
 import * as allOutNineties from './all_out_90s.js';
+import * as allOutEighties from './all_out_80s.js';
+import * as allOutSeventies from './all_out_70s.js';
 
 $(document).ready(() => {
   let level;
   let duration = 0;
-
+  let songs;
+  let playlist;
   $(".difficulty").click((e) => {
     level = e.target.name;
     durationMapping(level);
@@ -29,7 +33,29 @@ $(document).ready(() => {
         break;
     }
   };
-  const songs = allOutNineties.songs;
+
+  $(".playlist").click((e) => {
+    playlist = e.target.name;
+    playlistMapping(playlist);
+    $(e.currentTarget).parent().remove();
+  });
+
+  const playlistMapping = pl => {
+    switch (pl){
+      case 'allOutThousands':
+        songs = allOutThousands.songs;
+        break;
+      case 'allOutNineties':
+        songs = allOutNineties.songs;
+        break;
+      case 'allOutEighties':
+        songs = allOutEighties.songs;
+      case 'allOutSeventies':
+        songs = allOutSeventies.songs;
+        break;
+    }
+  };
+
 
   $( "#play" ).on("click", () => {
     play();
@@ -49,7 +75,6 @@ $(document).ready(() => {
     var buttonAudio = $(`<div class="button-audio">
       <button id="play" type="button" name="button">play</button>
       <audio id="audio" src=${song.url}/>
-
     </div>`);
     $('body').append(buttonAudio);
     buttonAudio.click(play);

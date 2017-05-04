@@ -1,5 +1,13 @@
+body, h1, h2, h3, h4, h5{
+  margin: 0px;
+  padding: 0px;
+  color: inherit;
+  font-family: 'Monstserrat', sans-serif;
+}
+
 body{
   background-color: #191414;
+  color: #C40700;
 }
 .hidden{
   display: none;
