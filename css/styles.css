@@ -5,15 +5,22 @@ body, h1, h2, h3, h4, h5{
   font-family: 'Monstserrat', sans-serif;
 }
 
+html{
+  height: 100%
+}
 
 
 
 body{
-  background-color: #191414;
+  /*background-color: #191414;*/
+  width: 100%;
+  height: 100%;
   color: pink;
   text-align: center;
-  background: url(http://cdn.wallpapersafari.com/46/7/MVBOFG.jpg) no-repeat center center fixed;
-  background-size: cover;
+  /*background: url(http://cdn.wallpapersafari.com/46/7/MVBOFG.jpg) no-repeat center center fixed;*/
+  background: linear-gradient(0deg, #191414, #F0401C);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 .body{
   background: rgba(0, 0, 0, 0.7);
