@@ -117,7 +117,8 @@ $(document).ready(() => {
   $(".playlist").click((e) => {
     playlist = e.currentTarget.name;
     playlistMapping(playlist);
-    $(e.currentTarget).parent().remove();
+    $(e.currentTarget).parent().fadeOut(300, function(){ $(this).remove();});
+    // $(e.currentTarget).parent().remove();
   });
 
   const playlistMapping = pl => {
@@ -158,7 +159,6 @@ $(document).ready(() => {
     </div>`);
     $('body').append(buttonAudio);
     buttonAudio.click(play);
-    debugger;
     var audio = document.getElementById("audio");
     $(audio).on("timeupdate", () => {
       if (audio.currentTime > duration){
