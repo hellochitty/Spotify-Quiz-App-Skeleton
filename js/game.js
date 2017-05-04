@@ -12,11 +12,11 @@ $(document).ready(() => {
     console.log(questions);
     $('#start').remove();
     currentQuestion = questions.shift();
+    $('.body').prepend("<div id='myProgress'><div id='myBar'></div></div>");
     showQuestion(currentQuestion);
   });
 
   const showQuestion = (question) => {
-    console.log(question);
     var buttonAudio = $(`<div class="button-audio">
       <button id="play" type="button" name="button">play</button>
       <audio id="audio" src=${question.url}/>
@@ -58,6 +58,7 @@ $(document).ready(() => {
   };
 
   const handleAnswerClick = (e) => {
+    $('#myBar').animate({ width: "+=10%" }, 500 );
     var audio = document.getElementById("audio");
     if (audio){
       audio.pause();
