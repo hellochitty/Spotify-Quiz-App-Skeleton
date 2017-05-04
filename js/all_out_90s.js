@@ -122,3 +122,5 @@ export const songs = [ { url: 'https://p.scdn.co/mp3-preview/3859547944f57cfb7b9
     name: 'Chasing Cars' },
   { url: 'https://p.scdn.co/mp3-preview/a83eedd6b982d4afdc2ceaeb458f471118ad78aa?cid=8897482848704f2a8f8d7c79726a70d4',
     name: 'Wake Me Up When September Ends' } ];
+export const art = "https://i.scdn.co/image/2b24acba836cb2614b0c8457dd7598d12bd3f385";
+export const names = songs.map((e) => e.name);

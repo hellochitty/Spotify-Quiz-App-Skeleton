@@ -1,10 +1,10 @@
-import {songs} from './songs.js';
+import * as allOutNineties from './all_out_90s.js';
 
 $(document).ready(() => {
   let level;
   let duration = 0;
 
-  $(".settings-difficulty").click((e) => {
+  $(".difficulty").click((e) => {
     level = e.target.name;
     durationMapping(level);
     $(e.currentTarget).parent().remove();
@@ -29,7 +29,7 @@ $(document).ready(() => {
         break;
     }
   };
-
+  const songs = allOutNineties.songs;
 
   $( "#play" ).on("click", () => {
     play();
@@ -45,10 +45,11 @@ $(document).ready(() => {
 
   $("#new-song").click((e) => {
     var song = songs[Math.floor(Math.random()* songs.length)];
-    console.log(song);
+    console.log(song.namer);
     var buttonAudio = $(`<div class="button-audio">
       <button id="play" type="button" name="button">play</button>
       <audio id="audio" src=${song.url}/>
+
     </div>`);
     $('body').append(buttonAudio);
     buttonAudio.click(play);
