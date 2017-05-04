@@ -87,6 +87,7 @@ $(document).ready(() => {
   let duration = 0;
   let songs;
   let playlist;
+
   $(".difficulty").click((e) => {
     level = e.target.name;
     durationMapping(level);
@@ -96,7 +97,7 @@ $(document).ready(() => {
 
   const durationMapping = lvl => {
     switch (lvl){
-      case 'pedestrian':
+      case 'Pedestrian':
         duration = 5;
         break;
       case 'Mediocre':
@@ -116,7 +117,6 @@ $(document).ready(() => {
   $(".playlist").click((e) => {
     playlist = e.currentTarget.name;
     playlistMapping(playlist);
-    debugger;
     $(e.currentTarget).parent().remove();
   });
 
@@ -151,16 +151,14 @@ $(document).ready(() => {
 
 
   $("#new-song").click((e) => {
-    debugger;
     var song = songs[Math.floor(Math.random()* songs.length)];
-    console.log(song.namer);
     var buttonAudio = $(`<div class="button-audio">
       <button id="play" type="button" name="button">play</button>
       <audio id="audio" src=${song.url}/>
     </div>`);
     $('body').append(buttonAudio);
     buttonAudio.click(play);
-
+    debugger;
     var audio = document.getElementById("audio");
     $(audio).on("timeupdate", () => {
       if (audio.currentTime > duration){
