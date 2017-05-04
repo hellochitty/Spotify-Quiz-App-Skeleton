@@ -35,8 +35,9 @@ $(document).ready(() => {
   };
 
   $(".playlist").click((e) => {
-    playlist = e.target.name;
+    playlist = e.currentTarget.name;
     playlistMapping(playlist);
+    debugger;
     $(e.currentTarget).parent().remove();
   });
 
@@ -50,6 +51,7 @@ $(document).ready(() => {
         break;
       case 'allOutEighties':
         songs = allOutEighties.songs;
+        break;
       case 'allOutSeventies':
         songs = allOutSeventies.songs;
         break;
@@ -70,6 +72,7 @@ $(document).ready(() => {
 
 
   $("#new-song").click((e) => {
+    debugger;
     var song = songs[Math.floor(Math.random()* songs.length)];
     console.log(song.namer);
     var buttonAudio = $(`<div class="button-audio">

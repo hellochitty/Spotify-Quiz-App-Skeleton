@@ -114,8 +114,9 @@ $(document).ready(() => {
   };
 
   $(".playlist").click((e) => {
-    playlist = e.target.name;
+    playlist = e.currentTarget.name;
     playlistMapping(playlist);
+    debugger;
     $(e.currentTarget).parent().remove();
   });
 
@@ -129,6 +130,7 @@ $(document).ready(() => {
         break;
       case 'allOutEighties':
         songs = __WEBPACK_IMPORTED_MODULE_2__all_out_80s_js__["a" /* songs */];
+        break;
       case 'allOutSeventies':
         songs = __WEBPACK_IMPORTED_MODULE_3__all_out_70s_js__["a" /* songs */];
         break;
@@ -149,6 +151,7 @@ $(document).ready(() => {
 
 
   $("#new-song").click((e) => {
+    debugger;
     var song = songs[Math.floor(Math.random()* songs.length)];
     console.log(song.namer);
     var buttonAudio = $(`<div class="button-audio">
