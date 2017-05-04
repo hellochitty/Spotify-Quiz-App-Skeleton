@@ -1,13 +1,43 @@
-import * as allOutThousands from './all_out_00s.js';
-import * as allOutNineties from './all_out_90s.js';
-import * as allOutEighties from './all_out_80s.js';
-import * as allOutSeventies from './all_out_70s.js';
+import * as allOutThousands from './songs/all_out_00s.js';
+import * as allOutNineties from './songs/all_out_90s.js';
+import * as allOutEighties from './songs/all_out_80s.js';
+import * as allOutSeventies from './songs/all_out_70s.js';
+import * as Util from './util.js';
 
+//on start, questions are loaded
 $(document).ready(() => {
+  $('#start').click(() => {
+    Util.shuffle(songs);
+    questions = songs.slice(0,10);
+    console.log(questions);
+    $(this).remove();
+    showQuestion(questions.shift());
+  });
+
+  const showQuestion = (question) => {
+    console.log(question);
+    var buttonAudio = $(`<div class="button-audio">
+      <button id="play" type="button" name="button">play</button>
+      <audio id="audio" src=${question.url}/>
+    </div>`);
+    $('.body').append(buttonAudio);
+    buttonAudio.click(play);
+    var audio = document.getElementById("audio");
+    $(audio).on("timeupdate", () => {
+      if (audio.currentTime > duration){
+        audio.pause();
+        audio.remove();
+      }
+    });
+  };
+
+
+
   let level;
   let duration = 0;
   let songs;
   let playlist;
+  let questions;
 
   $(".difficulty").click((e) => {
     level = e.target.name;

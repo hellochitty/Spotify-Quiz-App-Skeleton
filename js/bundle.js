@@ -73,20 +73,51 @@
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__all_out_00s_js__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__all_out_90s_js__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__all_out_80s_js__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__all_out_70s_js__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__songs_all_out_00s_js__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__songs_all_out_90s_js__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__songs_all_out_80s_js__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__songs_all_out_70s_js__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_js__ = __webpack_require__(10);
 
 
 
 
 
+
+//on start, questions are loaded
 $(document).ready(() => {
+  $('#start').click(() => {
+    __WEBPACK_IMPORTED_MODULE_4__util_js__["a" /* shuffle */](songs);
+    questions = songs.slice(0,10);
+    console.log(questions);
+    $(this).remove();
+    showQuestion(questions.shift());
+  });
+
+  const showQuestion = (question) => {
+    console.log(question);
+    var buttonAudio = $(`<div class="button-audio">
+      <button id="play" type="button" name="button">play</button>
+      <audio id="audio" src=${question.url}/>
+    </div>`);
+    $('.body').append(buttonAudio);
+    buttonAudio.click(play);
+    var audio = document.getElementById("audio");
+    $(audio).on("timeupdate", () => {
+      if (audio.currentTime > duration){
+        audio.pause();
+        audio.remove();
+      }
+    });
+  };
+
+
+
   let level;
   let duration = 0;
   let songs;
   let playlist;
+  let questions;
 
   $(".difficulty").click((e) => {
     level = e.target.name;
@@ -124,16 +155,16 @@ $(document).ready(() => {
   const playlistMapping = pl => {
     switch (pl){
       case 'allOutThousands':
-        songs = __WEBPACK_IMPORTED_MODULE_0__all_out_00s_js__["a" /* songs */];
+        songs = __WEBPACK_IMPORTED_MODULE_0__songs_all_out_00s_js__["a" /* songs */];
         break;
       case 'allOutNineties':
-        songs = __WEBPACK_IMPORTED_MODULE_1__all_out_90s_js__["a" /* songs */];
+        songs = __WEBPACK_IMPORTED_MODULE_1__songs_all_out_90s_js__["a" /* songs */];
         break;
       case 'allOutEighties':
-        songs = __WEBPACK_IMPORTED_MODULE_2__all_out_80s_js__["a" /* songs */];
+        songs = __WEBPACK_IMPORTED_MODULE_2__songs_all_out_80s_js__["a" /* songs */];
         break;
       case 'allOutSeventies':
-        songs = __WEBPACK_IMPORTED_MODULE_3__all_out_70s_js__["a" /* songs */];
+        songs = __WEBPACK_IMPORTED_MODULE_3__songs_all_out_70s_js__["a" /* songs */];
         break;
     }
   };
@@ -178,153 +209,11 @@ $(document).ready(() => {
 
 
 /***/ }),
-/* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-const songs = [ { url: 'https://p.scdn.co/mp3-preview/c64ec1719551be609a2d2cc66a659ca3c86b0f90?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Bitter Sweet Symphony' },
-  { url: 'https://p.scdn.co/mp3-preview/175ce440229d2fb5361756f3e68c9647b86a8eee?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Californication' },
-  { url: 'https://p.scdn.co/mp3-preview/9216ff07eedb76abd59c105cb45d1f6a82d95ca8?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Gangsta\'s Paradise (feat. L.V.)' },
-  { url: 'https://p.scdn.co/mp3-preview/69daa711bddd8fe7aa9acf17106ca85cf1ccfa14?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'No Scrubs' },
-  { url: 'https://p.scdn.co/mp3-preview/0e87ade9fa869e31b3c32115c2c10ee8fa522c81?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Iris' },
-  { url: 'https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'I Want It That Way' },
-  { url: 'https://p.scdn.co/mp3-preview/baf18743c412db2c1fcff31fac079c1c982637d2?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'All Star' },
-  { url: 'https://p.scdn.co/mp3-preview/6ee8cf3fc9a09831eb8538a7d696c89b3efb51d4?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Blue (Da Ba Dee) - DJ Ponte Ice Pop Radio' },
-  { url: 'https://p.scdn.co/mp3-preview/3a0bd02d9bf7de880da447365e0f2733e79266ef?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'It Wasn\'t Me' },
-  { url: 'https://p.scdn.co/mp3-preview/3b37724224c064ea4af094c37b7a63aa3c6c86b9?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'I\'ll Be Missing You (feat. 112)' },
-  { url: 'https://p.scdn.co/mp3-preview/89df793ea97c718c6d7be44e034f2fb95b2bc7fd?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Smells Like Teen Spirit' },
-  { url: 'https://p.scdn.co/mp3-preview/02ee79550a6b38fc7e9f7df1e521ae639b1e2c23?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Say My Name' },
-  { url: 'https://p.scdn.co/mp3-preview/79a104cf03840992b9de684636ef0cc0ef98b018?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Torn' },
-  { url: 'https://p.scdn.co/mp3-preview/46ef9abd8e61d8d8b7f8dbb01df186ed1665ff72?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Ice Ice Baby' },
-  { url: 'https://p.scdn.co/mp3-preview/51e465f29b643ca46c80019e3f394c39ed948b6b?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Save Tonight' },
-  { url: 'https://p.scdn.co/mp3-preview/085e154a4f2fcb73fbb5a97666bd1b31a92f3c7e?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Mambo No. 5 (A Little Bit of...)' },
-  { url: 'https://p.scdn.co/mp3-preview/261cad630d3f5c32c1ee519a50b836159f658e90?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'No Diggity' },
-  { url: 'https://p.scdn.co/mp3-preview/27cda6c08b6ddeddd4d3116aef7769ea3b2b11f5?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Wannabe - Radio Edit' },
-  { url: 'https://p.scdn.co/mp3-preview/77ec257a2900112b48fff6d99e6f6c8164c1bc46?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Zombie' },
-  { url: 'https://p.scdn.co/mp3-preview/6194a1fcf46615acc43f6e295fcc00b1366ef4f0?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'What\'s Up?' },
-  { url: 'https://p.scdn.co/mp3-preview/411caef0f4b93744944577de8dbb14af1b51df41?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Rhythm Is A Dancer - 7" Edit' },
-  { url: 'https://p.scdn.co/mp3-preview/ece21f9b69d40aa168b197af97116f67497bf3a9?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Don\'t Speak' },
-  { url: 'https://p.scdn.co/mp3-preview/90e41778392f27b6f7dd82db4c90916b3727aa6a?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Under The Bridge' },
-  { url: 'https://p.scdn.co/mp3-preview/c8fef7f0c42941f08e11854ef261df937a37e177?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Killing Me Softly with His Song' },
-  { url: 'https://p.scdn.co/mp3-preview/e12bf548d4633c9877b3772493bf9a980511b926?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Good Riddance (Time Of Your Life)' },
-  { url: 'https://p.scdn.co/mp3-preview/054b31755a31a9f57c2d250fb4e7b1c29dd693c6?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Come As You Are' },
-  { url: 'https://p.scdn.co/mp3-preview/659374a67e87fcdc8ea1d975f65d3321084f4ab6?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'What Is Love' },
-  { url: 'https://p.scdn.co/mp3-preview/9a712112b9a333e326ff46c93e83c4c9e17b8e80?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Bye Bye Bye' },
-  { url: 'https://p.scdn.co/mp3-preview/ac41624323eaeb9f3f7b2c5ec585790cb1f9c8a8?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'All That She Wants' },
-  { url: 'https://p.scdn.co/mp3-preview/2b6e89f6ad480deed492b01d5a63aabeaa6af1ff?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Black or White - Single Version' },
-  { url: 'https://p.scdn.co/mp3-preview/73132a5b606f713a0e8858a5fba92582e7ec9e3c?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'MMMBop - Single Version' },
-  { url: 'https://p.scdn.co/mp3-preview/46576be464f8b45bf713700b0fc72de76ee74f9c?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Gettin\' Jiggy Wit It' },
-  { url: 'https://p.scdn.co/mp3-preview/da2134a161f1cb34d17c2d6d7e77cc93d1c1e6f7?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: '...Baby One More Time' },
-  { url: 'https://p.scdn.co/mp3-preview/ed1bc64cb8983776bab673c09b95aeb17860ffe7?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Closing Time' },
-  { url: 'https://p.scdn.co/mp3-preview/4dd22a16b659a777792b4e7e1c17c7c6b18f2be7?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Lovefool - Radio Edit' },
-  { url: 'https://p.scdn.co/mp3-preview/88531d1cfdbcea42686efb7ea5dcf8c5ae797260?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Two Princes' },
-  { url: 'https://p.scdn.co/mp3-preview/d4a8e5d6fe6e83aded1afc394b2fe8e792fb6810?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Better Off Alone - Radio Edit' },
-  { url: 'https://p.scdn.co/mp3-preview/cb807aca1786ce663e5b533a17508df7ece2544a?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'I Don\'t Want to Miss a Thing' },
-  { url: 'https://p.scdn.co/mp3-preview/31c45c1e2951c7713b67a91299d3da369f502c75?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Genie in a Bottle' },
-  { url: 'https://p.scdn.co/mp3-preview/e09a9500396ce14f6f3a670b4f87f7b8c915b640?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Fly Away' },
-  { url: 'https://p.scdn.co/mp3-preview/d48422b8270cacc24b37df592fef5987719e8ffc?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Here Comes the Hotstepper' },
-  { url: 'https://p.scdn.co/mp3-preview/b3b11fad170bcccca0af7325c6f75f7ec3c06b78?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'U Can\'t Touch This' },
-  { url: 'https://p.scdn.co/mp3-preview/b353b33428d84b4bdc81cfc00b379a792f0c7e7e?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Tom\'s Diner' },
-  { url: 'https://p.scdn.co/mp3-preview/32c13458bc781854a49a087d93b3947acee26cc3?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Ghetto Supastar (That is What You Are)' },
-  { url: 'https://p.scdn.co/mp3-preview/b25295eabcaa07875705eb931ff57b9299e5846d?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Man! I Feel Like A Woman!' },
-  { url: 'https://p.scdn.co/mp3-preview/508870e159e4e672ce1c13f9b18655b62a229e29?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Bitch' },
-  { url: 'https://p.scdn.co/mp3-preview/579967c91dc409b693b9819c12bbba83e4d0f9a4?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Believe' },
-  { url: 'https://p.scdn.co/mp3-preview/d24fa7178eccb057ea3b9ccdac51584bfdcc8898?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Truly Madly Deeply' },
-  { url: 'https://p.scdn.co/mp3-preview/ef1fbd441eb8576dcc7c44a67dff75db0d712d28?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Sandstorm' },
-  { url: 'https://p.scdn.co/mp3-preview/183c0855e94b58dcb267e2b0721d4a3c99260acf?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Song 2 - 2012 Remastered Version' },
-  { url: 'https://p.scdn.co/mp3-preview/457d1a134a7a8174f5fa52f2d2b82c6927acb7aa?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Ironic' },
-  { url: 'https://p.scdn.co/mp3-preview/2088ffea2a54124e1e4e5e195303251f401c796f?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Baby, I Love Your Way' },
-  { url: 'https://p.scdn.co/mp3-preview/d596847aefcbafa2d620753d1a71971f3f776d13?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Boom, Boom, Boom, Boom!! - Airplay' },
-  { url: 'https://p.scdn.co/mp3-preview/70c682670b19c9659961c51a1f917dc46da9b56f?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Kiss From A Rose' },
-  { url: 'https://p.scdn.co/mp3-preview/dfca660c74d6459a663d3ab173814a3f043669be?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Walking In Memphis' },
-  { url: 'https://p.scdn.co/mp3-preview/845f05078c3f5848ef706fcfe350d927722182d9?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Breakfast At Tiffany\'s' },
-  { url: 'https://p.scdn.co/mp3-preview/7b4d293b8e25bd860a4c12017647a900a75d8611?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'The Rhythm of the Night' },
-  { url: 'https://p.scdn.co/mp3-preview/b13b9914d6f13e6c241b5729e21b69b915c08f84?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Adam\'s Song' },
-  { url: 'https://p.scdn.co/mp3-preview/fe85f9b0e4f46bd5008f3c656fd15e00ca2c617c?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Cotton Eye Joe' },
-  { url: 'https://p.scdn.co/mp3-preview/900921fe7ea36b001edc1c21f146c4732ff43032?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Jumpin\', Jumpin\'' },
-  { url: 'https://p.scdn.co/mp3-preview/7e311365f30148e3dbff9efc1fce42331dd48fb9?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Mr. Vain - Radio Edit' },
-  { url: 'https://p.scdn.co/mp3-preview/c4b86b4adfe16bfbdad84d1dfbbec5a18ca297ed?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Thong Song' },
-  { url: 'https://p.scdn.co/mp3-preview/fc85b5f71fb0415b048a110e30be8d4f793e5835?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Pure Shores' },
-  { url: 'https://p.scdn.co/mp3-preview/fedc56c0e12bcc3e16f23e52075e8a47049d3619?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Crush' },
-  { url: 'https://p.scdn.co/mp3-preview/1573929d14099eb980b93df0223a19973156755a?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Walkin\' On The Sun' },
-  { url: 'https://p.scdn.co/mp3-preview/977aa847ebb0df8ed2f1eb78b7427d2881ab1d30?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'We like to Party! (The Vengabus) - Airplay' },
-  { url: 'https://p.scdn.co/mp3-preview/3da8cc2c5ec97c17fa55726b33f2e4273a2e9cc6?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Captain Jack - Short Mix' } ];
-/* harmony export (immutable) */ __webpack_exports__["a"] = songs;
-
-const names = songs.map((e) => e.name);
-/* unused harmony export names */
-
-
-
-/***/ }),
-/* 3 */
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -460,7 +349,139 @@ const names = songs.map((e) => e.name);
 
 
 /***/ }),
-/* 4 */
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const songs = [ { url: 'https://p.scdn.co/mp3-preview/50e82c99c20ffa4223e82250605bbd8500cb3928?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Hotel California' },
+  { url: 'https://p.scdn.co/mp3-preview/5fce831e28eb2ae69f1c44e340c2368c228e0764?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'September' },
+  { url: 'https://p.scdn.co/mp3-preview/8fe58f0863b4f70a1a9a0b7e81f5e76ca3273154?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Superstition - Single Version' },
+  { url: 'https://p.scdn.co/mp3-preview/1105f02041b9568367b9fa0a782de97ccf7ac85c?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Have You Ever Seen The Rain?' },
+  { url: 'https://p.scdn.co/mp3-preview/d1ff0ba5c5538ca2c50b808aab2278253c98b038?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Bohemian Rhapsody - Remastered 2011' },
+  { url: 'https://p.scdn.co/mp3-preview/2619e7b38719422fc859407abd37601992b3dbdf?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Sweet Home Alabama' },
+  { url: 'https://p.scdn.co/mp3-preview/4e6739bb8e557d02c29b8204ccb24063a90d36f4?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Ziggy Stardust - 2012 Remastered Version' },
+  { url: 'https://p.scdn.co/mp3-preview/a4fbbf57dbc6df3c901e6d4aed750cbda3da7686?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'December, 1963 (Oh What A Night!)' },
+  { url: 'https://p.scdn.co/mp3-preview/aa826e8af9e873f09466c96d5dc19801e2431432?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Mrs. Robinson' },
+  { url: 'https://p.scdn.co/mp3-preview/77cc27ab6ee9c5b4d35d1f8b1c176c4686e06b80?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Sultans Of Swing' },
+  { url: 'https://p.scdn.co/mp3-preview/5fda76b980c7de5df1e7e9b2d54464665b6029ce?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Don\'t Stop Me Now - Remastered 2011' },
+  { url: 'https://p.scdn.co/mp3-preview/6cb1bd639749cd5d063a692206730bb70aa21bab?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Come And Get Your Love' },
+  { url: 'https://p.scdn.co/mp3-preview/3f451d46def07f436729cd5b48d7d88a7d48dc4d?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Hold the Line' },
+  { url: 'https://p.scdn.co/mp3-preview/2f56920743ab7da6d3d6331868dd23bbe72cd063?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Ain\'t No Sunshine' },
+  { url: 'https://p.scdn.co/mp3-preview/050f2114d4bad83aee7b05248e181edc34a26206?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'The Logical Song - 2010 Remastered' },
+  { url: 'https://p.scdn.co/mp3-preview/6707390f6c75c161c21d37bd1ea99661f06d6ff5?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Beast Of Burden - Remastered' },
+  { url: 'https://p.scdn.co/mp3-preview/6a681e9a60eb8e2665c6345e52d18f628ee939e1?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Don\'t Go Breaking My Heart' },
+  { url: 'https://p.scdn.co/mp3-preview/7f57f4ede66150d8899f7a78896c746c1ebe1f51?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Video Killed The Radio Star - Single Version' },
+  { url: 'https://p.scdn.co/mp3-preview/f44fb0e7334daef3df4faacf3b1e18d02b509165?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Rich Girl - Remastered 2003' },
+  { url: 'https://p.scdn.co/mp3-preview/a8836c597850f17b9e5f8471a215c36c63e73298?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Roxanne - Remastered 2003' },
+  { url: 'https://p.scdn.co/mp3-preview/55617a0eb9dc3b0a1bf27dea407a95e1371aab36?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'You\'re So Vain' },
+  { url: 'https://p.scdn.co/mp3-preview/39160b959b9c3ef5eb82314160eb168af167ac3b?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'A Horse with No Name' },
+  { url: 'https://p.scdn.co/mp3-preview/46573cb026c2307864ab50ac1a29fcd30307ad35?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Piano Man' },
+  { url: 'https://p.scdn.co/mp3-preview/ab86af73d22ea24e920c1fe59abf5c51d8823aaf?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Long Train Runnin\'' },
+  { url: 'https://p.scdn.co/mp3-preview/97aaefeb43d0e2368526778487c7097607d5d78d?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'More Than a Feeling' },
+  { url: 'https://p.scdn.co/mp3-preview/87f2cd53a7068bb40daacb78fb40d5f4904a6485?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'My Sweet Lord' },
+  { url: 'https://p.scdn.co/mp3-preview/24d78633a528e09723b948bf787fa476666bf45c?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Miss You - Remastered' },
+  { url: 'https://p.scdn.co/mp3-preview/b9aa79e4a9222843e45839f51040ac320b97bb4b?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Here Comes The Sun - 2004 Digital Remaster' },
+  { url: 'https://p.scdn.co/mp3-preview/b2d590fb86a0424a3f959033df1a92f9a6c325d4?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Boogie Wonderland' },
+  { url: 'https://p.scdn.co/mp3-preview/09dcb64638386cd6eb5223ec5fcd5303ba046bd6?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'American Pie' },
+  { url: 'https://p.scdn.co/mp3-preview/e17e6ad85c4fd8517e1bd705a28ee0c21bab8f97?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Wild World' },
+  { url: 'https://p.scdn.co/mp3-preview/3af01492c826dc0b22bad7df39c5a0d4cdbcb610?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'The Passenger' },
+  { url: 'https://p.scdn.co/mp3-preview/07370e75eaec4423362be7a5f420882ce260266d?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'T.N.T.' },
+  { url: 'https://p.scdn.co/mp3-preview/08acafb7154f671e6c85f1136239ab4b401c41a0?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Spirit In The Sky' },
+  { url: 'https://p.scdn.co/mp3-preview/88034b6356a11c9bea4cca28d56a80efcc655ac4?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Lean on Me' },
+  { url: 'https://p.scdn.co/mp3-preview/dfff8663f5fdc8dd4d7166df656575912785b6cf?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Kung Fu Fighting' },
+  { url: 'https://p.scdn.co/mp3-preview/05ae0b02f8c7f0fca1c53a068eb0ba3e214ffa77?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Maggie May' },
+  { url: 'https://p.scdn.co/mp3-preview/9185b6ecb03c528f260bac599560cde811f0a980?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Carry on Wayward Son' },
+  { url: 'https://p.scdn.co/mp3-preview/8ec3a4b322c0df167ad409a668ceaa704fcbd1c0?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Life On Mars? - 2015 Remastered Version' },
+  { url: 'https://p.scdn.co/mp3-preview/902633811e6a135bdd9ece72e92318e2ce2fe509?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Me and Julio Down by the Schoolyard' },
+  { url: 'https://p.scdn.co/mp3-preview/f4b0f9a10bfd23a105d35e32f67a4e8a1d88354c?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Give A Little Bit' },
+  { url: 'https://p.scdn.co/mp3-preview/6438510c7b7a752f3417d9f33a47d93b8633a0bb?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Grease - From “Grease” Soundtrack' },
+  { url: 'https://p.scdn.co/mp3-preview/5665823591395cba556aec206d2fd06814f6d5ea?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Sunny' },
+  { url: 'https://p.scdn.co/mp3-preview/2cd86380dc397f02912aa0dc1d27d5338eabf598?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Hot Stuff' },
+  { url: 'https://p.scdn.co/mp3-preview/6ba9b626bb0d823e7fb4cbb24a0411d0a445790d?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Black Magic Woman' },
+  { url: 'https://p.scdn.co/mp3-preview/538979bb920f417d2fda44a2b5bd82422e56d633?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Dancing Queen' },
+  { url: 'https://p.scdn.co/mp3-preview/9500d573d94db4bd32988d0bd10991113f8114e1?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Is This Love' },
+  { url: 'https://p.scdn.co/mp3-preview/723547bdf0e19eed066f6dbe43d92bd5f8988e69?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: '"Heroes" - Single Version; 2014 Remastered Version' },
+  { url: 'https://p.scdn.co/mp3-preview/ff88f821d5f1ba4436bcd3ad83eadbae02ac6927?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'The Boys Are Back In Town' },
+  { url: 'https://p.scdn.co/mp3-preview/7c93511a2b7fee96e4e2a823e78d6b5b07aa07a9?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'YMCA - Original Version 1978' },
+  { url: 'https://p.scdn.co/mp3-preview/2152ea9ba834d64f6d0b4fb0f8c9b3d776e002c9?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Band On The Run - Remastered 2010' },
+  { url: 'https://p.scdn.co/mp3-preview/ba83a7f06fac10fc6f653ed3d3345a4cf9d32e4a?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Cocaine' },
+  { url: 'https://p.scdn.co/mp3-preview/8995c11b9e4a866f37eced30cdc2038667f50cb7?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Imagine - 2010 - Remaster' },
+  { url: 'https://p.scdn.co/mp3-preview/28e6a2deb41a57f790403a8b52563a8d194d1627?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Easy' },
+  { url: 'https://p.scdn.co/mp3-preview/4818369f0f21692907bf3a5bc7f62bacfa168770?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'It Never Rains in Southern California' },
+  { url: 'https://p.scdn.co/mp3-preview/1ea4acc3a9d9ae09bea46172a6395988040e2c81?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Stumblin\' In' },
+  { url: 'https://p.scdn.co/mp3-preview/4144cd85604fe1bfb8344f8018373f9120243f55?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Rock Your Baby' },
+  { url: 'https://p.scdn.co/mp3-preview/54321b85d17753e0b8a030e7af9b50fe7335739f?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Co-Co' },
+  { url: 'https://p.scdn.co/mp3-preview/ed4ecc6244a48d5454d5ef2de8e877aa98b5bf85?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'My Coo Ca Choo' },
+  { url: 'https://p.scdn.co/mp3-preview/96d4e08ee9b7d412429dff0b6c735d137e3d1326?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Lust For Life' } ];
+/* harmony export (immutable) */ __webpack_exports__["a"] = songs;
+
+const names = songs.map((e) => e.name);
+/* unused harmony export names */
+
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -606,134 +627,179 @@ const names = songs.map((e) => e.name);
 
 
 /***/ }),
-/* 5 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-const songs = [ { url: 'https://p.scdn.co/mp3-preview/50e82c99c20ffa4223e82250605bbd8500cb3928?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Hotel California' },
-  { url: 'https://p.scdn.co/mp3-preview/5fce831e28eb2ae69f1c44e340c2368c228e0764?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'September' },
-  { url: 'https://p.scdn.co/mp3-preview/8fe58f0863b4f70a1a9a0b7e81f5e76ca3273154?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Superstition - Single Version' },
-  { url: 'https://p.scdn.co/mp3-preview/1105f02041b9568367b9fa0a782de97ccf7ac85c?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Have You Ever Seen The Rain?' },
-  { url: 'https://p.scdn.co/mp3-preview/d1ff0ba5c5538ca2c50b808aab2278253c98b038?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Bohemian Rhapsody - Remastered 2011' },
-  { url: 'https://p.scdn.co/mp3-preview/2619e7b38719422fc859407abd37601992b3dbdf?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Sweet Home Alabama' },
-  { url: 'https://p.scdn.co/mp3-preview/4e6739bb8e557d02c29b8204ccb24063a90d36f4?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Ziggy Stardust - 2012 Remastered Version' },
-  { url: 'https://p.scdn.co/mp3-preview/a4fbbf57dbc6df3c901e6d4aed750cbda3da7686?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'December, 1963 (Oh What A Night!)' },
-  { url: 'https://p.scdn.co/mp3-preview/aa826e8af9e873f09466c96d5dc19801e2431432?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Mrs. Robinson' },
-  { url: 'https://p.scdn.co/mp3-preview/77cc27ab6ee9c5b4d35d1f8b1c176c4686e06b80?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Sultans Of Swing' },
-  { url: 'https://p.scdn.co/mp3-preview/5fda76b980c7de5df1e7e9b2d54464665b6029ce?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Don\'t Stop Me Now - Remastered 2011' },
-  { url: 'https://p.scdn.co/mp3-preview/6cb1bd639749cd5d063a692206730bb70aa21bab?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Come And Get Your Love' },
-  { url: 'https://p.scdn.co/mp3-preview/3f451d46def07f436729cd5b48d7d88a7d48dc4d?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Hold the Line' },
-  { url: 'https://p.scdn.co/mp3-preview/2f56920743ab7da6d3d6331868dd23bbe72cd063?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Ain\'t No Sunshine' },
-  { url: 'https://p.scdn.co/mp3-preview/050f2114d4bad83aee7b05248e181edc34a26206?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'The Logical Song - 2010 Remastered' },
-  { url: 'https://p.scdn.co/mp3-preview/6707390f6c75c161c21d37bd1ea99661f06d6ff5?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Beast Of Burden - Remastered' },
-  { url: 'https://p.scdn.co/mp3-preview/6a681e9a60eb8e2665c6345e52d18f628ee939e1?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Don\'t Go Breaking My Heart' },
-  { url: 'https://p.scdn.co/mp3-preview/7f57f4ede66150d8899f7a78896c746c1ebe1f51?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Video Killed The Radio Star - Single Version' },
-  { url: 'https://p.scdn.co/mp3-preview/f44fb0e7334daef3df4faacf3b1e18d02b509165?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Rich Girl - Remastered 2003' },
-  { url: 'https://p.scdn.co/mp3-preview/a8836c597850f17b9e5f8471a215c36c63e73298?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Roxanne - Remastered 2003' },
-  { url: 'https://p.scdn.co/mp3-preview/55617a0eb9dc3b0a1bf27dea407a95e1371aab36?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'You\'re So Vain' },
-  { url: 'https://p.scdn.co/mp3-preview/39160b959b9c3ef5eb82314160eb168af167ac3b?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'A Horse with No Name' },
-  { url: 'https://p.scdn.co/mp3-preview/46573cb026c2307864ab50ac1a29fcd30307ad35?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Piano Man' },
-  { url: 'https://p.scdn.co/mp3-preview/ab86af73d22ea24e920c1fe59abf5c51d8823aaf?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Long Train Runnin\'' },
-  { url: 'https://p.scdn.co/mp3-preview/97aaefeb43d0e2368526778487c7097607d5d78d?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'More Than a Feeling' },
-  { url: 'https://p.scdn.co/mp3-preview/87f2cd53a7068bb40daacb78fb40d5f4904a6485?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'My Sweet Lord' },
-  { url: 'https://p.scdn.co/mp3-preview/24d78633a528e09723b948bf787fa476666bf45c?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Miss You - Remastered' },
-  { url: 'https://p.scdn.co/mp3-preview/b9aa79e4a9222843e45839f51040ac320b97bb4b?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Here Comes The Sun - 2004 Digital Remaster' },
-  { url: 'https://p.scdn.co/mp3-preview/b2d590fb86a0424a3f959033df1a92f9a6c325d4?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Boogie Wonderland' },
-  { url: 'https://p.scdn.co/mp3-preview/09dcb64638386cd6eb5223ec5fcd5303ba046bd6?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'American Pie' },
-  { url: 'https://p.scdn.co/mp3-preview/e17e6ad85c4fd8517e1bd705a28ee0c21bab8f97?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Wild World' },
-  { url: 'https://p.scdn.co/mp3-preview/3af01492c826dc0b22bad7df39c5a0d4cdbcb610?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'The Passenger' },
-  { url: 'https://p.scdn.co/mp3-preview/07370e75eaec4423362be7a5f420882ce260266d?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'T.N.T.' },
-  { url: 'https://p.scdn.co/mp3-preview/08acafb7154f671e6c85f1136239ab4b401c41a0?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Spirit In The Sky' },
-  { url: 'https://p.scdn.co/mp3-preview/88034b6356a11c9bea4cca28d56a80efcc655ac4?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Lean on Me' },
-  { url: 'https://p.scdn.co/mp3-preview/dfff8663f5fdc8dd4d7166df656575912785b6cf?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Kung Fu Fighting' },
-  { url: 'https://p.scdn.co/mp3-preview/05ae0b02f8c7f0fca1c53a068eb0ba3e214ffa77?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Maggie May' },
-  { url: 'https://p.scdn.co/mp3-preview/9185b6ecb03c528f260bac599560cde811f0a980?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Carry on Wayward Son' },
-  { url: 'https://p.scdn.co/mp3-preview/8ec3a4b322c0df167ad409a668ceaa704fcbd1c0?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Life On Mars? - 2015 Remastered Version' },
-  { url: 'https://p.scdn.co/mp3-preview/902633811e6a135bdd9ece72e92318e2ce2fe509?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Me and Julio Down by the Schoolyard' },
-  { url: 'https://p.scdn.co/mp3-preview/f4b0f9a10bfd23a105d35e32f67a4e8a1d88354c?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Give A Little Bit' },
-  { url: 'https://p.scdn.co/mp3-preview/6438510c7b7a752f3417d9f33a47d93b8633a0bb?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Grease - From “Grease” Soundtrack' },
-  { url: 'https://p.scdn.co/mp3-preview/5665823591395cba556aec206d2fd06814f6d5ea?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Sunny' },
-  { url: 'https://p.scdn.co/mp3-preview/2cd86380dc397f02912aa0dc1d27d5338eabf598?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Hot Stuff' },
-  { url: 'https://p.scdn.co/mp3-preview/6ba9b626bb0d823e7fb4cbb24a0411d0a445790d?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Black Magic Woman' },
-  { url: 'https://p.scdn.co/mp3-preview/538979bb920f417d2fda44a2b5bd82422e56d633?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Dancing Queen' },
-  { url: 'https://p.scdn.co/mp3-preview/9500d573d94db4bd32988d0bd10991113f8114e1?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Is This Love' },
-  { url: 'https://p.scdn.co/mp3-preview/723547bdf0e19eed066f6dbe43d92bd5f8988e69?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: '"Heroes" - Single Version; 2014 Remastered Version' },
-  { url: 'https://p.scdn.co/mp3-preview/ff88f821d5f1ba4436bcd3ad83eadbae02ac6927?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'The Boys Are Back In Town' },
-  { url: 'https://p.scdn.co/mp3-preview/7c93511a2b7fee96e4e2a823e78d6b5b07aa07a9?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'YMCA - Original Version 1978' },
-  { url: 'https://p.scdn.co/mp3-preview/2152ea9ba834d64f6d0b4fb0f8c9b3d776e002c9?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Band On The Run - Remastered 2010' },
-  { url: 'https://p.scdn.co/mp3-preview/ba83a7f06fac10fc6f653ed3d3345a4cf9d32e4a?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Cocaine' },
-  { url: 'https://p.scdn.co/mp3-preview/8995c11b9e4a866f37eced30cdc2038667f50cb7?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Imagine - 2010 - Remaster' },
-  { url: 'https://p.scdn.co/mp3-preview/28e6a2deb41a57f790403a8b52563a8d194d1627?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Easy' },
-  { url: 'https://p.scdn.co/mp3-preview/4818369f0f21692907bf3a5bc7f62bacfa168770?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'It Never Rains in Southern California' },
-  { url: 'https://p.scdn.co/mp3-preview/1ea4acc3a9d9ae09bea46172a6395988040e2c81?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Stumblin\' In' },
-  { url: 'https://p.scdn.co/mp3-preview/4144cd85604fe1bfb8344f8018373f9120243f55?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Rock Your Baby' },
-  { url: 'https://p.scdn.co/mp3-preview/54321b85d17753e0b8a030e7af9b50fe7335739f?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Co-Co' },
-  { url: 'https://p.scdn.co/mp3-preview/ed4ecc6244a48d5454d5ef2de8e877aa98b5bf85?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'My Coo Ca Choo' },
-  { url: 'https://p.scdn.co/mp3-preview/96d4e08ee9b7d412429dff0b6c735d137e3d1326?cid=8897482848704f2a8f8d7c79726a70d4',
-    name: 'Lust For Life' } ];
+const songs = [ { url: 'https://p.scdn.co/mp3-preview/c64ec1719551be609a2d2cc66a659ca3c86b0f90?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Bitter Sweet Symphony' },
+  { url: 'https://p.scdn.co/mp3-preview/175ce440229d2fb5361756f3e68c9647b86a8eee?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Californication' },
+  { url: 'https://p.scdn.co/mp3-preview/9216ff07eedb76abd59c105cb45d1f6a82d95ca8?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Gangsta\'s Paradise (feat. L.V.)' },
+  { url: 'https://p.scdn.co/mp3-preview/69daa711bddd8fe7aa9acf17106ca85cf1ccfa14?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'No Scrubs' },
+  { url: 'https://p.scdn.co/mp3-preview/0e87ade9fa869e31b3c32115c2c10ee8fa522c81?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Iris' },
+  { url: 'https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'I Want It That Way' },
+  { url: 'https://p.scdn.co/mp3-preview/baf18743c412db2c1fcff31fac079c1c982637d2?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'All Star' },
+  { url: 'https://p.scdn.co/mp3-preview/6ee8cf3fc9a09831eb8538a7d696c89b3efb51d4?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Blue (Da Ba Dee) - DJ Ponte Ice Pop Radio' },
+  { url: 'https://p.scdn.co/mp3-preview/3a0bd02d9bf7de880da447365e0f2733e79266ef?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'It Wasn\'t Me' },
+  { url: 'https://p.scdn.co/mp3-preview/3b37724224c064ea4af094c37b7a63aa3c6c86b9?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'I\'ll Be Missing You (feat. 112)' },
+  { url: 'https://p.scdn.co/mp3-preview/89df793ea97c718c6d7be44e034f2fb95b2bc7fd?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Smells Like Teen Spirit' },
+  { url: 'https://p.scdn.co/mp3-preview/02ee79550a6b38fc7e9f7df1e521ae639b1e2c23?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Say My Name' },
+  { url: 'https://p.scdn.co/mp3-preview/79a104cf03840992b9de684636ef0cc0ef98b018?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Torn' },
+  { url: 'https://p.scdn.co/mp3-preview/46ef9abd8e61d8d8b7f8dbb01df186ed1665ff72?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Ice Ice Baby' },
+  { url: 'https://p.scdn.co/mp3-preview/51e465f29b643ca46c80019e3f394c39ed948b6b?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Save Tonight' },
+  { url: 'https://p.scdn.co/mp3-preview/085e154a4f2fcb73fbb5a97666bd1b31a92f3c7e?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Mambo No. 5 (A Little Bit of...)' },
+  { url: 'https://p.scdn.co/mp3-preview/261cad630d3f5c32c1ee519a50b836159f658e90?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'No Diggity' },
+  { url: 'https://p.scdn.co/mp3-preview/27cda6c08b6ddeddd4d3116aef7769ea3b2b11f5?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Wannabe - Radio Edit' },
+  { url: 'https://p.scdn.co/mp3-preview/77ec257a2900112b48fff6d99e6f6c8164c1bc46?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Zombie' },
+  { url: 'https://p.scdn.co/mp3-preview/6194a1fcf46615acc43f6e295fcc00b1366ef4f0?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'What\'s Up?' },
+  { url: 'https://p.scdn.co/mp3-preview/411caef0f4b93744944577de8dbb14af1b51df41?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Rhythm Is A Dancer - 7" Edit' },
+  { url: 'https://p.scdn.co/mp3-preview/ece21f9b69d40aa168b197af97116f67497bf3a9?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Don\'t Speak' },
+  { url: 'https://p.scdn.co/mp3-preview/90e41778392f27b6f7dd82db4c90916b3727aa6a?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Under The Bridge' },
+  { url: 'https://p.scdn.co/mp3-preview/c8fef7f0c42941f08e11854ef261df937a37e177?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Killing Me Softly with His Song' },
+  { url: 'https://p.scdn.co/mp3-preview/e12bf548d4633c9877b3772493bf9a980511b926?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Good Riddance (Time Of Your Life)' },
+  { url: 'https://p.scdn.co/mp3-preview/054b31755a31a9f57c2d250fb4e7b1c29dd693c6?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Come As You Are' },
+  { url: 'https://p.scdn.co/mp3-preview/659374a67e87fcdc8ea1d975f65d3321084f4ab6?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'What Is Love' },
+  { url: 'https://p.scdn.co/mp3-preview/9a712112b9a333e326ff46c93e83c4c9e17b8e80?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Bye Bye Bye' },
+  { url: 'https://p.scdn.co/mp3-preview/ac41624323eaeb9f3f7b2c5ec585790cb1f9c8a8?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'All That She Wants' },
+  { url: 'https://p.scdn.co/mp3-preview/2b6e89f6ad480deed492b01d5a63aabeaa6af1ff?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Black or White - Single Version' },
+  { url: 'https://p.scdn.co/mp3-preview/73132a5b606f713a0e8858a5fba92582e7ec9e3c?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'MMMBop - Single Version' },
+  { url: 'https://p.scdn.co/mp3-preview/46576be464f8b45bf713700b0fc72de76ee74f9c?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Gettin\' Jiggy Wit It' },
+  { url: 'https://p.scdn.co/mp3-preview/da2134a161f1cb34d17c2d6d7e77cc93d1c1e6f7?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: '...Baby One More Time' },
+  { url: 'https://p.scdn.co/mp3-preview/ed1bc64cb8983776bab673c09b95aeb17860ffe7?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Closing Time' },
+  { url: 'https://p.scdn.co/mp3-preview/4dd22a16b659a777792b4e7e1c17c7c6b18f2be7?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Lovefool - Radio Edit' },
+  { url: 'https://p.scdn.co/mp3-preview/88531d1cfdbcea42686efb7ea5dcf8c5ae797260?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Two Princes' },
+  { url: 'https://p.scdn.co/mp3-preview/d4a8e5d6fe6e83aded1afc394b2fe8e792fb6810?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Better Off Alone - Radio Edit' },
+  { url: 'https://p.scdn.co/mp3-preview/cb807aca1786ce663e5b533a17508df7ece2544a?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'I Don\'t Want to Miss a Thing' },
+  { url: 'https://p.scdn.co/mp3-preview/31c45c1e2951c7713b67a91299d3da369f502c75?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Genie in a Bottle' },
+  { url: 'https://p.scdn.co/mp3-preview/e09a9500396ce14f6f3a670b4f87f7b8c915b640?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Fly Away' },
+  { url: 'https://p.scdn.co/mp3-preview/d48422b8270cacc24b37df592fef5987719e8ffc?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Here Comes the Hotstepper' },
+  { url: 'https://p.scdn.co/mp3-preview/b3b11fad170bcccca0af7325c6f75f7ec3c06b78?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'U Can\'t Touch This' },
+  { url: 'https://p.scdn.co/mp3-preview/b353b33428d84b4bdc81cfc00b379a792f0c7e7e?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Tom\'s Diner' },
+  { url: 'https://p.scdn.co/mp3-preview/32c13458bc781854a49a087d93b3947acee26cc3?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Ghetto Supastar (That is What You Are)' },
+  { url: 'https://p.scdn.co/mp3-preview/b25295eabcaa07875705eb931ff57b9299e5846d?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Man! I Feel Like A Woman!' },
+  { url: 'https://p.scdn.co/mp3-preview/508870e159e4e672ce1c13f9b18655b62a229e29?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Bitch' },
+  { url: 'https://p.scdn.co/mp3-preview/579967c91dc409b693b9819c12bbba83e4d0f9a4?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Believe' },
+  { url: 'https://p.scdn.co/mp3-preview/d24fa7178eccb057ea3b9ccdac51584bfdcc8898?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Truly Madly Deeply' },
+  { url: 'https://p.scdn.co/mp3-preview/ef1fbd441eb8576dcc7c44a67dff75db0d712d28?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Sandstorm' },
+  { url: 'https://p.scdn.co/mp3-preview/183c0855e94b58dcb267e2b0721d4a3c99260acf?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Song 2 - 2012 Remastered Version' },
+  { url: 'https://p.scdn.co/mp3-preview/457d1a134a7a8174f5fa52f2d2b82c6927acb7aa?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Ironic' },
+  { url: 'https://p.scdn.co/mp3-preview/2088ffea2a54124e1e4e5e195303251f401c796f?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Baby, I Love Your Way' },
+  { url: 'https://p.scdn.co/mp3-preview/d596847aefcbafa2d620753d1a71971f3f776d13?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Boom, Boom, Boom, Boom!! - Airplay' },
+  { url: 'https://p.scdn.co/mp3-preview/70c682670b19c9659961c51a1f917dc46da9b56f?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Kiss From A Rose' },
+  { url: 'https://p.scdn.co/mp3-preview/dfca660c74d6459a663d3ab173814a3f043669be?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Walking In Memphis' },
+  { url: 'https://p.scdn.co/mp3-preview/845f05078c3f5848ef706fcfe350d927722182d9?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Breakfast At Tiffany\'s' },
+  { url: 'https://p.scdn.co/mp3-preview/7b4d293b8e25bd860a4c12017647a900a75d8611?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'The Rhythm of the Night' },
+  { url: 'https://p.scdn.co/mp3-preview/b13b9914d6f13e6c241b5729e21b69b915c08f84?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Adam\'s Song' },
+  { url: 'https://p.scdn.co/mp3-preview/fe85f9b0e4f46bd5008f3c656fd15e00ca2c617c?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Cotton Eye Joe' },
+  { url: 'https://p.scdn.co/mp3-preview/900921fe7ea36b001edc1c21f146c4732ff43032?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Jumpin\', Jumpin\'' },
+  { url: 'https://p.scdn.co/mp3-preview/7e311365f30148e3dbff9efc1fce42331dd48fb9?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Mr. Vain - Radio Edit' },
+  { url: 'https://p.scdn.co/mp3-preview/c4b86b4adfe16bfbdad84d1dfbbec5a18ca297ed?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Thong Song' },
+  { url: 'https://p.scdn.co/mp3-preview/fc85b5f71fb0415b048a110e30be8d4f793e5835?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Pure Shores' },
+  { url: 'https://p.scdn.co/mp3-preview/fedc56c0e12bcc3e16f23e52075e8a47049d3619?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Crush' },
+  { url: 'https://p.scdn.co/mp3-preview/1573929d14099eb980b93df0223a19973156755a?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Walkin\' On The Sun' },
+  { url: 'https://p.scdn.co/mp3-preview/977aa847ebb0df8ed2f1eb78b7427d2881ab1d30?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'We like to Party! (The Vengabus) - Airplay' },
+  { url: 'https://p.scdn.co/mp3-preview/3da8cc2c5ec97c17fa55726b33f2e4273a2e9cc6?cid=8897482848704f2a8f8d7c79726a70d4',
+    name: 'Captain Jack - Short Mix' } ];
 /* harmony export (immutable) */ __webpack_exports__["a"] = songs;
 
 const names = songs.map((e) => e.name);
 /* unused harmony export names */
+
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+var holder = [];
+// > newarr.forEach((e) => {
+// ... if (e.track.preview_url){
+// ..... holder.push({url:e.track.preview_url, name: e.track.name})
+// ..... }
+// ... }
+// ... )
+
+
+const shuffle = (array) => {
+  let i = 0;
+  let j = 0;
+  let temp = null;
+
+  for (i = array.length -1; i > 0; i -= 1){
+    j= Math.floor(Math.random() * (i + 1));
+    temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+};
+/* harmony export (immutable) */ __webpack_exports__["a"] = shuffle;
 
 
 

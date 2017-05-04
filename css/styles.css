@@ -5,21 +5,37 @@ body, h1, h2, h3, h4, h5{
   font-family: 'Monstserrat', sans-serif;
 }
 
+
+
+
 body{
   background-color: #191414;
-  color: #191414;
+  color: pink;
+  text-align: center;
   background: url(http://cdn.wallpapersafari.com/46/7/MVBOFG.jpg) no-repeat center center fixed;
   background-size: cover;
 }
 .body{
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.7);
   border-radius: 5px;
   width: 800px;
-  height: 800px;
-  margin: 10px auto;
+  height: 600px;
+  margin: 20px auto;
 }
-.hidden{
-  display: none;
+
+.settings-playlist{
+  margin: 0px auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.playlist{
+  background: transparent;
+  border: none;
+}
+.playlist > img{
+  width: 200px;
+  height: auto;
 }
 
 footer{
@@ -27,5 +43,7 @@ footer{
   left: 0;
   bottom: 0;
   height: 20px;
+  width: 200px;
+  border-radius: 5px;
   background: rgba(255, 255, 255, 0.4);
 }
