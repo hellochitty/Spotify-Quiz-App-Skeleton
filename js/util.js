@@ -19,4 +19,5 @@ export const shuffle = (array) => {
     array[i] = array[j];
     array[j] = temp;
   }
+  return array;
 };

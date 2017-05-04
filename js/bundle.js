@@ -90,7 +90,7 @@ $(document).ready(() => {
     __WEBPACK_IMPORTED_MODULE_4__util_js__["a" /* shuffle */](songs);
     questions = songs.slice(0,10);
     console.log(questions);
-    $(this).remove();
+    $('#start').remove();
     showQuestion(questions.shift());
   });
 
@@ -101,6 +101,10 @@ $(document).ready(() => {
       <audio id="audio" src=${question.url}/>
     </div>`);
     $('.body').append(buttonAudio);
+    answers = getOtherAnswers(question);
+    $('.body').append(htmlAnswers(answers));
+
+    $('.answer').click(handleAnswerClick);
     buttonAudio.click(play);
     var audio = document.getElementById("audio");
     $(audio).on("timeupdate", () => {
@@ -111,6 +115,41 @@ $(document).ready(() => {
     });
   };
 
+  const getOtherAnswers = (question) => {
+    console.log(question.name);
+    let holder = [question.name];
+    __WEBPACK_IMPORTED_MODULE_4__util_js__["a" /* shuffle */](songs);
+    let i = 0;
+    while(holder.length < 4){
+      if (songs[i].name !== question.name){
+        holder.push(songs[i].name);
+      }
+      i++;
+    }
+    return __WEBPACK_IMPORTED_MODULE_4__util_js__["a" /* shuffle */](holder);
+  };
+
+  const htmlAnswers = (answers) => {
+    return (
+      `<button class="answer" type="button" name=${answers[0]}>${answers[0]}</button>
+      <button class="answer" type="button" name=${answers[1]}>${answers[1]}</button>
+      <button class="answer" type="button" name=${answers[2]}>${answers[2]}</button>
+      <button class="answer" type="button" name=${answers[3]}>${answers[3]}</button>`
+    );
+  };
+
+  const handleAnswerClick = (answer) => {
+    if (answer === questions.name){
+      numRight += 1;
+    }
+    if (questions.length > 0){
+      showQuestion(questions.shift());
+    }else{
+      console.log(numRight);
+    }
+  };
+
+
 
 
   let level;
@@ -118,6 +157,8 @@ $(document).ready(() => {
   let songs;
   let playlist;
   let questions;
+  let numRight;
+  let answers;
 
   $(".difficulty").click((e) => {
     level = e.target.name;
@@ -170,6 +211,7 @@ $(document).ready(() => {
   };
 
 
+  //song play logic
   $( "#play" ).on("click", () => {
     play();
   });
@@ -798,6 +840,7 @@ const shuffle = (array) => {
     array[i] = array[j];
     array[j] = temp;
   }
+  return array;
 };
 /* harmony export (immutable) */ __webpack_exports__["a"] = shuffle;
 
