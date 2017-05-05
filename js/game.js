@@ -20,9 +20,12 @@ $(document).ready(() => {
       el: ".intro",
       opacity: .5,
       duration: 500,
-      translateX: "200%",
-      easing: "easeOutSine 300",
-      complete: function() { $('.intro').remove(); }
+      easing: "easeInCirc",
+      complete: () => {
+        $('.intro').remove();
+        $('.body').removeClass("hidden");
+
+      }
     });
 
 
@@ -85,7 +88,7 @@ $(document).ready(() => {
   };
 
   const handleAnswerClick = (e) => {
-    $('#myBar').animate({ width: "+=10%" }, 500 );
+
     var audio = document.getElementById("audio");
     if (audio){
       audio.pause();
@@ -94,6 +97,7 @@ $(document).ready(() => {
     $('.answer').remove();
     if (e.currentTarget.textContent === currentQuestion.name){
       numRight += 1;
+      $('#myBar').animate({ width: "+=10%" }, 500 );
       console.log(numRight);
     }
     if (questions.length > 0){
