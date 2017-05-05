@@ -6,6 +6,21 @@ import * as Util from './util.js';
 
 //on start, questions are loaded
 $(document).ready(() => {
+  let backgrounds = [
+    'linear-gradient(0deg, #191414, #F0401C)',
+    'linear-gradient(0deg, #191414, #1C51C7)',
+    'linear-gradient(0deg, #191414, #619406)',
+    'linear-gradient(0deg, #191414, #F01F59)'
+  ];
+  Util.shuffle(backgrounds);
+  $('body').css('background', backgrounds[0]);
+  //all should load after yes
+  $('#yes').click(() => {
+    $('.intro').
+    $('.intro').remove();
+
+  });
+
   $('#start').click(() => {
     Util.shuffle(songs);
     questions = songs.slice(0,10);

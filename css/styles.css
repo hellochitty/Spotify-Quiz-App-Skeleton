@@ -18,7 +18,7 @@ body{
   color: pink;
   text-align: center;
   /*background: url(http://cdn.wallpapersafari.com/46/7/MVBOFG.jpg) no-repeat center center fixed;*/
-  background: linear-gradient(0deg, #191414, #F0401C);
+  /*background: linear-gradient(0deg, #191414, #F0401C);*/
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -50,7 +50,7 @@ footer{
   left: 0;
   bottom: 0;
   height: 20px;
-  width: 200px;
+  width: 400px;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.4);
 }
@@ -68,3 +68,17 @@ footer{
     border-radius: 15px;
     background-color: pink;
 }
+
+/*text styles*/
+h1{
+  font-size: 50px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+/*Mobile*/
+
+/*@media all and (max-width: 800px) {
+  .body {
+    width: 20%;
+  }
+}*/
