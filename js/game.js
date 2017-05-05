@@ -23,7 +23,7 @@ $(document).ready(() => {
       easing: "easeInCirc",
       complete: () => {
         $('.intro').remove();
-        $('.body').removeClass("hidden");
+        $('.settings').removeClass("hidden");
 
       }
     });

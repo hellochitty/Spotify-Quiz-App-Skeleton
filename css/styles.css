@@ -22,7 +22,7 @@ html{
 
 .button{
   padding: 10px;
-  width: 50px;
+  min-width: 50px;
   margin: 20px auto;
   background-color: transparent;
   /*border: 1px solid rgba(255, 255, 255, 0.1);
@@ -38,6 +38,9 @@ html{
   cursor: pointer;
 }
 
+#yes{
+  width: 50px;
+}
 
 body{
   /*background-color: #191414;*/
@@ -50,13 +53,15 @@ body{
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
 .body{
-  background: rgba(0, 0, 0, 0.7);
+  /*background: rgba(0, 0, 0, 0.7);*/
   border-radius: 5px;
   width: 800px;
   height: 600px;
   margin: 20px auto;
 }
+
 .intro{
   width: 500px;
   height: 200px;
@@ -67,10 +72,15 @@ body{
   margin-left: -250px;
 }
 
+.settings-difficulty{
+  display: flex;
+  justify-content: center;
+}
+
 .settings-playlist{
   margin: 0px auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 .playlist{
@@ -78,7 +88,7 @@ body{
   border: none;
 }
 .playlist > img{
-  width: 200px;
+  width: 180px;
   height: auto;
 }
 
@@ -95,7 +105,7 @@ footer{
 /*progress bar styles*/
 #myProgress {
     width: 90%;
-    background-color: rgba(102,112,111,0.5);
+    background-color: rgba(102,112,111,0.2);
     border-radius: 15px;
     margin: 0 auto;
 }
