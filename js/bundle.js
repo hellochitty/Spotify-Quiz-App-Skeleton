@@ -687,8 +687,20 @@ $(document).ready(() => {
   $('body').css('background', backgrounds[0]);
   //all should load after yes
   $('#yes').click(() => {
-    $('.intro').
-    $('.intro').remove();
+    animate({
+      el: ".intro",
+      opacity: .5,
+      duration: 500,
+      translateX: "200%",
+      easing: "easeOutSine 300",
+      complete: function() { $('.intro').remove(); }
+    });
+
+
+
+
+
+
 
   });
 
